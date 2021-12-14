@@ -23,11 +23,16 @@ public class Practice5_ReverseVowels {
 
     @Test //Negative
     public void example2(){
-
+        String s = "";
+        //Output :
+        Assert.assertEquals(reverseVowels(s), "");
     }
 
     @Test //Edge
     public void example3(){
+        String s = "AeIoU";
+        //Output : UoIeA
+        Assert.assertEquals(reverseVowels(s), "UoIeA");
     }
 
     private String reverseVowels(String s){

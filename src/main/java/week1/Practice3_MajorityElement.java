@@ -18,17 +18,21 @@ public class Practice3_MajorityElement {
     public void example1(){
         int[] nums = new int[] {2,2,1,1,1,2,2};
         // Output : 2
-
         Assert.assertEquals(findMajorityElement(nums),2);
     }
 
     @Test //Negative
     public void example2(){
-
+        int[] nums = new int[] {};
+        // Output : 0
+        Assert.assertEquals(findMajorityElement(nums),0);
     }
 
     @Test //Edge
     public void example3(){
+        int[] nums = new int[] {5};
+        // Output : 5
+        Assert.assertEquals(findMajorityElement(nums),5);
     }
 
     private int findMajorityElement(int[] nums){

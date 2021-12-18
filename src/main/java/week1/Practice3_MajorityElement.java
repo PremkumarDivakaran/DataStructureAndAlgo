@@ -14,6 +14,12 @@ public class Practice3_MajorityElement {
         return corresponding key
      */
 
+    /*
+    Pseudocode -
+    1. Sort array
+    2. Get middle element (n/2) and return it
+     */
+
     @Test  //Positive
     public void example1(){
         int[] nums = new int[] {2,2,1,1,1,2,2};

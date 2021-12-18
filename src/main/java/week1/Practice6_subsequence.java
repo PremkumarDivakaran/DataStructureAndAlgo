@@ -19,6 +19,10 @@ public class Practice6_subsequence {
      6. Return flag
      */
 
+    /*
+    Replace t using regex t.replaceAll([^abc],"")
+     */
+
     @Test  //Positive
     public void example1(){
         String s = "abc", t = "ahbgdc";

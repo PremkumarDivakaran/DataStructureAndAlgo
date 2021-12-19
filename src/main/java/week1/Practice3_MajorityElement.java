@@ -55,4 +55,6 @@ public class Practice3_MajorityElement {
         return result;
     }
 
+    //Time Complexity -> O[n]
+
 }

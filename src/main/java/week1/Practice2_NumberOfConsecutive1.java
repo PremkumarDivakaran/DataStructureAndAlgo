@@ -54,5 +54,6 @@ public class Practice2_NumberOfConsecutive1 {
         return maxCount;
 
     }
+    //Time Complexity -> O[n]
 
 }

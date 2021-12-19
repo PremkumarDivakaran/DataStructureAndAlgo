@@ -18,7 +18,9 @@ public class Practice4_SquareOfSortedArray {
     public void example1(){
         int[] nums = new int[] {2,4,6,8,9};
         // output : [4,16,36,64,81]
-        Assert.assertArrayEquals(findSquareOfSortedArray(nums),
+        //Assert.assertArrayEquals(findSquareOfSortedArray(nums),
+        //        new int[] {4,16,36,64,81});
+        Assert.assertArrayEquals(findSquareOfSortedArray_twoPointer(nums),
                 new int[] {4,16,36,64,81});
     }
 
@@ -34,13 +36,35 @@ public class Practice4_SquareOfSortedArray {
     public void example3(){
         int[] nums = new int[] {-4,-1,0,3,10};
         // output : [0,1,9,16,100]
-        Assert.assertArrayEquals(findSquareOfSortedArray(nums),
+        /*Assert.assertArrayEquals(findSquareOfSortedArray(nums),
+                new int[] {0,1,9,16,100});*/
+        Assert.assertArrayEquals(findSquareOfSortedArray_twoPointer(nums),
                 new int[] {0,1,9,16,100});
     }
 
     private int[] findSquareOfSortedArray(int[] nums){
         for(int i=0;i<nums.length;i++) nums[i] *= nums[i];
         Arrays.sort(nums);
+        return nums;
+    }
+
+    //Time Complexity ->
+
+    // Time complexity -> O[n]
+    private int[] findSquareOfSortedArray_twoPointer(int[] nums){
+        int left = 0, right = nums.length-1;
+        while (right > 0) {
+            if(Math.abs(nums[left])<Math.abs(nums[right])) right--;
+            else if(Math.abs(nums[left])>Math.abs(nums[right])){
+                nums[left] = nums[left] + nums[right];
+                nums[right] = nums[left] - nums[right];
+                nums[left] = nums[left] - nums[right];
+                right--;
+            }
+        }
+
+        for(int i=0;i<nums.length;i++) nums[i] *= nums[i];
+
         return nums;
     }
 

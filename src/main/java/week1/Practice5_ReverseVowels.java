@@ -14,25 +14,40 @@ public class Practice5_ReverseVowels {
     3. Traverse through array and replace vowels with new array in reverse order
      */
 
+    /*
+    Pseudocode -
+    1. intialize left =0 and right = array.length
+    2. Traverse loop till left<right
+    3. if left = vowel & right = vowel
+        swap it
+    4. if left = vowel & right != vowel
+        right --
+    5. if left != vowel & right == vowel
+        left ++
+     */
+
     @Test  //Positive
     public void example1(){
         String s = "leetcode";
         //Output : leotcede
-        Assert.assertEquals(reverseVowels(s), "leotcede");
+        //Assert.assertEquals(reverseVowels(s), "leotcede");
+        Assert.assertEquals(reverseVowels_twoPointer(s), "leotcede");
     }
 
     @Test //Negative
     public void example2(){
         String s = "";
         //Output :
-        Assert.assertEquals(reverseVowels(s), "");
+        //Assert.assertEquals(reverseVowels(s), "");
+        Assert.assertEquals(reverseVowels_twoPointer(s), "");
     }
 
     @Test //Edge
     public void example3(){
         String s = "AeIoU";
         //Output : UoIeA
-        Assert.assertEquals(reverseVowels(s), "UoIeA");
+        //Assert.assertEquals(reverseVowels(s), "UoIeA");
+        Assert.assertEquals(reverseVowels_twoPointer(s), "UoIeA");
     }
 
     private String reverseVowels(String s){
@@ -64,6 +79,42 @@ public class Practice5_ReverseVowels {
 
         return returnString;
 
+    }
+
+    //Time Complexity -> O[n]
+
+    //Time Complexity - O[n/2]
+    private String reverseVowels_twoPointer(String s){
+        String[] sArr = s.split("");
+        int left = 0, right = sArr.length-1;
+
+        while(left<right){
+            if(isVowel(sArr[left]) && isVowel(sArr[right])){
+                String temp = sArr[left];
+                sArr[left++] = sArr[right];
+                sArr[right--] = temp;
+            }
+            else if(!isVowel(sArr[right])) right--;
+            else left++;
+        }
+
+        String returnString = "";
+
+        for (String eachString:sArr) {
+            returnString += eachString;
+        }
+
+        return returnString;
+
+
+    }
+
+    private boolean isVowel(String str){
+        if(str.equalsIgnoreCase("a") || str.equalsIgnoreCase("e") ||
+                str.equalsIgnoreCase("i") || str.equalsIgnoreCase("o") ||
+                str.equalsIgnoreCase("u")) return true;
+
+        return false;
     }
 
 

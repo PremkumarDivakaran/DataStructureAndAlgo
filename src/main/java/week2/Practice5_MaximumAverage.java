@@ -3,7 +3,7 @@ package week2;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Practice4_MaximumAverage {
+public class Practice5_MaximumAverage {
     /*
     Pseudocode -
 

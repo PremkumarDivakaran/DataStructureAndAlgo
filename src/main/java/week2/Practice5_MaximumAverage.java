@@ -36,15 +36,15 @@ public class Practice5_MaximumAverage {
 
     //Time Complexity -> O[n]
     //Space Complexity -> O[1]
-    private float maximumAverage(int[] nums,int k){
+    private double maximumAverage(int[] nums,int k){
         int left=0, right=k;
-        float windowAvg = 0, maxAvg = 0;
+        double windowAvg = 0, maxAvg = 0;
         for(int i=0;i<k;i++)
-            windowAvg += nums[i]/(float)k;
+            windowAvg += nums[i]/(double)k;
 
         maxAvg = windowAvg;
         while(right<nums.length) {
-            windowAvg = windowAvg - nums[left++]/(float)k + nums[right++]/(float)k;
+            windowAvg = windowAvg - nums[left++]/(float)k + nums[right++]/(double)k;
             maxAvg = Math.max(maxAvg, windowAvg);
         }
         return maxAvg;

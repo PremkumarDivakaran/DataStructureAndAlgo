@@ -33,12 +33,22 @@ public class Practice8_ContainsDuplicate {
         Assert.assertTrue(findDuplicateWithinKthElement(nums,k));
     }
 
+    @Test //Edge
+    public void example4(){
+        int[] nums = new int[]{1,2,3,4,5,6,7,8,9,9};
+        int target = 3;
+        Assert.assertTrue(findDuplicateWithinKthElement_bruteForce(nums,target));
+        Assert.assertTrue(findDuplicateWithinKthElement(nums,target));
+    }
+
     //Time Complexity -> O[n^2]
     //Space Complexity -> O[1]
     private boolean findDuplicateWithinKthElement_bruteForce(int[] nums,int k){
-        for(int i=0;i< nums.length-k;i++)
-            for(int j=i+1;j<=k;j++)
-                if(nums[i]==nums[j]) return true;
+        for(int i=0;i< nums.length-1;i++)
+            for(int j=i+1;j<=i+k;j++)
+                if(j<nums.length)
+                    if (nums[i] == nums[j]) return true;
+
 
         return false;
     }
@@ -47,12 +57,14 @@ public class Practice8_ContainsDuplicate {
     //Space Complexity -> O[1]
     private boolean findDuplicateWithinKthElement(int[] nums,int k){
         int left = 0, right = 1;
-        while (right<nums.length){
-            if(nums[left] == nums[right] && right-left<=k) return true;
-            else if(right-left>k){
+        while (right<nums.length || left<nums.length-1){
+            if(right-left>k || right>=nums.length){
                 left++;
                 right = left+1;
+                continue;
             }
+
+            if(nums[left] == nums[right] && right-left<=k) return true;
             else right++;
         }
 

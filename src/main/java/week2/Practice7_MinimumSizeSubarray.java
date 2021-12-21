@@ -18,10 +18,10 @@ public class Practice7_MinimumSizeSubarray {
 
     @Test  //Positive
     public void example1(){
-        int[] nums = new int[]{2,3,1,2,4,3,7};
+        int[] nums = new int[]{2,3,1,2,4,3};
         int target = 7;
-        Assert.assertEquals(1,findMinimumSizeSubarray(nums,target));
-        Assert.assertEquals(1,findMinimumSizeSubarray_bruteForce(nums,target));
+        Assert.assertEquals(2,findMinimumSizeSubarray(nums,target));
+        Assert.assertEquals(2,findMinimumSizeSubarray_bruteForce(nums,target));
     }
 
     @Test //Negative
@@ -63,7 +63,7 @@ public class Practice7_MinimumSizeSubarray {
     //Time Complexity -> O[n]
     //Space Complexity -> O[1]
     private int findMinimumSizeSubarray(int[] nums, int target){
-        int left = 0, right = 0, sum = 0, minSubArraySize = Integer.MAX_VALUE;
+        int left = 0, right = 0, sum = nums[0], minSubArraySize = Integer.MAX_VALUE;
 
         int totalSum = 0;
         for(int eachInt:nums){
@@ -74,10 +74,13 @@ public class Practice7_MinimumSizeSubarray {
 
         while(left<nums.length){
             if(sum>=target){
-                minSubArraySize = Math.min(minSubArraySize,right-left);
+                minSubArraySize = Math.min(minSubArraySize,right-left+1);
                 sum = sum - nums[left++];
             }
-            else sum += nums[right++];
+            else if(left==nums.length-1 && right==nums.length-1) left++;
+            else if(right!=nums.length-1) sum += nums[++right];
+            else if(right==nums.length-1 && sum<target) break;
+
         }
 
         return minSubArraySize;

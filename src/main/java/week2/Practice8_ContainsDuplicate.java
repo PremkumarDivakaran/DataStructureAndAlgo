@@ -33,7 +33,8 @@ public class Practice8_ContainsDuplicate {
         Assert.assertTrue(findDuplicateWithinKthElement(nums,k));
     }
 
-    //O[n^2]
+    //Time Complexity -> O[n^2]
+    //Space Complexity -> O[1]
     private boolean findDuplicateWithinKthElement_bruteForce(int[] nums,int k){
         for(int i=0;i< nums.length-k;i++)
             for(int j=i+1;j<=k;j++)
@@ -42,7 +43,8 @@ public class Practice8_ContainsDuplicate {
         return false;
     }
 
-    //O[n]
+    //Time Complexity -> O[n]
+    //Space Complexity -> O[1]
     private boolean findDuplicateWithinKthElement(int[] nums,int k){
         int left = 0, right = 1;
         while (right<nums.length){

@@ -6,10 +6,14 @@ import org.junit.Test;
 public class Practice7_MinimumSizeSubarray {
     /*
     Pseudocode -
-    1. set left and right as 0
-    2. Traverse loop till left < intarray
-    3. check if sum is less than target, move right to next
-    4. if sum is more than target, move left to next
+    1. Intialize left, right, sum as '0' & store Maximum integer value to variable minSubArraySize
+    2. Traverse loop till left is less than given array
+    3. check if sum is less than target,
+        add right th element to sum & increment right
+    4. if sum is more than or equal to target,
+        store min value in minSubArraySize (minSubArraySize, right-left)
+        subtract left th element to sum & increment left
+    5. Return minSubArraySize
      */
 
     @Test  //Positive
@@ -36,7 +40,8 @@ public class Practice7_MinimumSizeSubarray {
         Assert.assertEquals(0,findMinimumSizeSubarray_bruteForce(nums,target));
     }
 
-    //O[n^2]
+    //Time Complexity -> O[n^2]
+    //Space Complexity -> O[1]
     private int findMinimumSizeSubarray_bruteForce(int[] nums, int target){
         int minSubArraySize = Integer.MAX_VALUE;
         for(int i=0;i< nums.length;i++){
@@ -55,7 +60,8 @@ public class Practice7_MinimumSizeSubarray {
         return minSubArraySize;
     }
 
-    //O[n]
+    //Time Complexity -> O[n]
+    //Space Complexity -> O[1]
     private int findMinimumSizeSubarray(int[] nums, int target){
         int left = 0, right = 0, sum = 0, minSubArraySize = Integer.MAX_VALUE;
 

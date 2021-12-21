@@ -6,7 +6,6 @@ import org.junit.Test;
 public class Practice5_MaximumAverage {
     /*
     Pseudocode -
-
     1) Take average first k elements and have a sum
     2) loop from k element until end
            a) subtract the first element from the sum
@@ -35,6 +34,8 @@ public class Practice5_MaximumAverage {
         Assert.assertEquals((float)5.00000,maximumAverage(nums,k),0.001);
     }
 
+    //Time Complexity -> O[n]
+    //Space Complexity -> O[1]
     private float maximumAverage(int[] nums,int k){
         int left=0, right=k;
         float windowAvg = 0, maxAvg = 0;

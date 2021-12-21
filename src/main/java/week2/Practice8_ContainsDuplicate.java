@@ -6,7 +6,12 @@ import org.junit.Test;
 public class Practice8_ContainsDuplicate {
     /*
     Pseudocode -
-
+    1. Intialize left =0, right =0
+    2. Traverse through loop till left reaches nums.length-1 or right reaches nums.lenght
+        a. If right-left > k or right >= nums.length-1,
+            increment left and reset right to left+1 & continue loop
+        b. If nums[left] == nums[right], return true
+        c. else increment right
      */
 
     @Test  //Positive

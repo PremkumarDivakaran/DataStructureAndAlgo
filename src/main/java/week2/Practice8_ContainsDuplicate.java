@@ -3,6 +3,9 @@ package week2;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Practice8_ContainsDuplicate {
     /*
     Pseudocode -
@@ -20,6 +23,7 @@ public class Practice8_ContainsDuplicate {
         int k=3;
         Assert.assertTrue(findDuplicateWithinKthElement_bruteForce(nums,k));
         Assert.assertTrue(findDuplicateWithinKthElement(nums,k));
+        Assert.assertTrue(findDuplicateWithKthElementUsingSet(nums,k));
     }
 
     @Test //Negative
@@ -28,6 +32,7 @@ public class Practice8_ContainsDuplicate {
         int k=2;
         Assert.assertFalse(findDuplicateWithinKthElement_bruteForce(nums,k));
         Assert.assertFalse(findDuplicateWithinKthElement(nums,k));
+        Assert.assertFalse(findDuplicateWithKthElementUsingSet(nums,k));
     }
 
     @Test //Edge
@@ -36,6 +41,7 @@ public class Practice8_ContainsDuplicate {
         int k=3;
         Assert.assertTrue(findDuplicateWithinKthElement_bruteForce(nums,k));
         Assert.assertTrue(findDuplicateWithinKthElement(nums,k));
+        Assert.assertTrue(findDuplicateWithKthElementUsingSet(nums,k));
     }
 
     @Test //Edge
@@ -44,6 +50,7 @@ public class Practice8_ContainsDuplicate {
         int target = 3;
         Assert.assertTrue(findDuplicateWithinKthElement_bruteForce(nums,target));
         Assert.assertTrue(findDuplicateWithinKthElement(nums,target));
+        Assert.assertTrue(findDuplicateWithKthElementUsingSet(nums,target));
     }
 
     //Time Complexity -> O[n^2]
@@ -73,6 +80,25 @@ public class Practice8_ContainsDuplicate {
             else right++;
         }
 
+        return false;
+    }
+
+
+    private boolean findDuplicateWithKthElementUsingSet(int[] nums, int k){
+        int left = 0, right = 0;
+        Set<Integer> hSet = new HashSet<>();
+
+        while(left<nums.length-1){
+            if(right-left>k || right>=nums.length){
+                right = ++left;
+                hSet.clear();
+            }
+
+            if(!hSet.add(nums[right])) return true;
+            else{
+                right++;
+            }
+        }
         return false;
     }
 

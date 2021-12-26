@@ -21,6 +21,7 @@ public class Practice6_UniqueSubstring {
         String s = "aababcabc";
         Assert.assertEquals(4,findCountOfUniqueSubstring(s));
         Assert.assertEquals(4,findCountOfUniqueSubstring_bruteForce(s));
+        Assert.assertEquals(4,goodSubstringCount(s));
     }
 
     @Test //Negative
@@ -28,6 +29,7 @@ public class Practice6_UniqueSubstring {
         String s = "";
         Assert.assertEquals(0,findCountOfUniqueSubstring(s));
         Assert.assertEquals(0,findCountOfUniqueSubstring_bruteForce(s));
+        Assert.assertEquals(0,goodSubstringCount(s));
     }
 
     @Test //Edge
@@ -35,6 +37,7 @@ public class Practice6_UniqueSubstring {
         String s = "abca";
         Assert.assertEquals(2,findCountOfUniqueSubstring(s));
         Assert.assertEquals(2,findCountOfUniqueSubstring_bruteForce(s));
+        Assert.assertEquals(2,goodSubstringCount(s));
     }
 
     //Time Complexity -> O[n^2]
@@ -68,6 +71,36 @@ public class Practice6_UniqueSubstring {
         if(mySet.size()==3) return true;
 
         return false;
+    }
+
+    /*
+    Pseudocode -
+    1. Intialize left = 0, right = 2, count = 0, HashSet
+    2. Traverse through loop till right < s.length()
+    3. Check substring (left,right) is unique
+            a. if yes, increment count
+    4. increment left and right always
+     */
+
+    private int goodSubstringCount(String s){
+        int left = 0, right = 2, count = 0, start = 0;
+        Set<Character> hSet = new HashSet<>();
+
+        while(right<s.length()){
+            boolean isUnique = false;
+            while(left<=right){
+                if(hSet.add(s.charAt(left++))) isUnique = true;
+                else {
+                    isUnique = false;
+                    break;
+                }
+            }
+            if(isUnique) count++;
+            hSet.clear();
+            left=++start;
+            right++;
+        }
+        return count;
     }
 
 }

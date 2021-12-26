@@ -30,13 +30,19 @@ public class Practice3_findSubArraySum {
     }
 
     private void findSubArraySum_slidingWindow(int[] nums, int k){
-        int left = 0, sum=0;
+        int left = 0, right1=0, sum=0;
 
-        for(int right=0;right<nums.length;right++){
-            sum += nums[right];
-            while(sum>k) sum -= nums[left++];
-            if(sum==k) System.out.println(left + " " + right);
+        while(right1<nums.length){
+            sum += nums[right1++];
+            if(sum>k) sum -= nums[left++];
+            if(sum==k) System.out.println(left + " " + right1);
         }
+
+        /*for(int right=0;right<nums.length;right++){
+            sum += nums[right];
+            if(sum>k) sum -= nums[left++];
+            if(sum==k) System.out.println(left + " " + right);
+        }*/
     }
 
     @Test

@@ -37,7 +37,7 @@ public class Practice2_MergeSort {
 
         int[] out = new int[nums1.length+nums2.length];
 
-        /*while(left<nums1.length && right<nums2.length){
+        while(left<nums1.length && right<nums2.length){
             if(nums1[left]<nums2[right]) out[start++] = nums1[left++];
             else out[start++] = nums2[right++];
         }
@@ -47,15 +47,15 @@ public class Practice2_MergeSort {
                 if(left<nums1.length) out[i] = nums1[left++];
                 if(right<nums2.length) out[i] = nums2[right++];
             }
-        }*/
+        }
 
         //alternate approach
-        while(left<nums1.length || right<nums2.length){
+        /*while(left<nums1.length || right<nums2.length){
             if(left== nums1.length) out[start++] = nums2[right++];
             else if(right == nums2.length) out[start++] = nums1[left++];
             else if(nums1[left]<nums2[right]) out[start++] = nums1[left++];
             else out[start++] = nums2[right++];
-        }
+        }*/
 
         return out;
     }

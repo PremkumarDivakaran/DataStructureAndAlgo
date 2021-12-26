@@ -103,11 +103,30 @@ public class Practice1_RemoveElement {
 
     }
 
-    /*@Test
+    public void removeElement1(int[] nums, int target){
+        int left = 0, right = 1;
+
+        while(nums[left]!=target && nums[right]!=target){
+            if(nums[left]==target){
+                int temp = nums[left];
+                nums[left++] = nums[right];
+                nums[right++] = temp;
+            }
+            else{
+                left++;
+                right++;
+            }
+        }
+
+        System.out.println(Arrays.toString(nums));
+
+    }
+
+    @Test
     public void testRunner(){
         int[] nums = {5,3,2,1,2,3};
         int target =  3;
 
-        removeElement_twoPointer(nums,target);
-    }*/
+        removeElement1(nums,target);
+    }
 }

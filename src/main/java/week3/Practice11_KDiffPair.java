@@ -1,8 +1,11 @@
 package week3;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Practice11_KDiffPair {
     /*
@@ -21,28 +24,32 @@ public class Practice11_KDiffPair {
     public void example1(){
         int[] nums = new int[]{3,1,4,1,5};
         int k = 2;
-        System.out.println(findPairs(nums,k));
+        Assert.assertEquals(2,findPairs(nums,k));
+        Assert.assertEquals(2,findPairs_1(nums,k));
     }
 
     @Test //Negative
     public void example2(){
         int[] nums = new int[]{1,4,1,2,3};
         int k = 4;
-        System.out.println(findPairs(nums,k));
+        Assert.assertEquals(0,findPairs(nums,k));
+        Assert.assertEquals(0,findPairs_1(nums,k));
     }
 
     @Test //Edge
     public void example3(){
         int[] nums = new int[]{1,3,1,5,4};
         int k = 0;
-        System.out.println(findPairs(nums,k));
+        Assert.assertEquals(1,findPairs(nums,k));
+        Assert.assertEquals(1,findPairs_1(nums,k));
     }
 
     @Test //Edge
     public void example4(){
         int[] nums = new int[]{1,1,1,1,1};
         int k = 0;
-        System.out.println(findPairs(nums,k));
+        Assert.assertEquals(1,findPairs(nums,k));
+        Assert.assertEquals(1,findPairs_1(nums,k));
     }
 
 
@@ -61,6 +68,19 @@ public class Practice11_KDiffPair {
                 right++;
             }
         }
+
+        return count;
+    }
+
+    private int findPairs_1(int[] nums, int k) {
+        int count = 0;
+        Map<Integer,Integer> hMap = new HashMap<>();
+
+        for(int eachElement:nums) hMap.put(eachElement,hMap.getOrDefault(eachElement,0)+1);
+
+        for(Integer eachElement : hMap.keySet())
+            if ((k == 0 && hMap.get(eachElement) > 1) ||
+                    (k>0 && hMap.containsKey(eachElement+k))) count++;
 
         return count;
     }

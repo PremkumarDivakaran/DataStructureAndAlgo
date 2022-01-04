@@ -3,9 +3,7 @@ package week3;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Practice11_KDiffPair {
     /*
@@ -26,6 +24,7 @@ public class Practice11_KDiffPair {
         int k = 2;
         Assert.assertEquals(2,findPairs(nums,k));
         Assert.assertEquals(2,findPairs_1(nums,k));
+        Assert.assertEquals(2,findPairs_2(nums,k));
     }
 
     @Test //Negative
@@ -34,6 +33,7 @@ public class Practice11_KDiffPair {
         int k = 4;
         Assert.assertEquals(0,findPairs(nums,k));
         Assert.assertEquals(0,findPairs_1(nums,k));
+        Assert.assertEquals(0,findPairs_2(nums,k));
     }
 
     @Test //Edge
@@ -42,6 +42,7 @@ public class Practice11_KDiffPair {
         int k = 0;
         Assert.assertEquals(1,findPairs(nums,k));
         Assert.assertEquals(1,findPairs_1(nums,k));
+        Assert.assertEquals(1,findPairs_2(nums,k));
     }
 
     @Test //Edge
@@ -50,6 +51,7 @@ public class Practice11_KDiffPair {
         int k = 0;
         Assert.assertEquals(1,findPairs(nums,k));
         Assert.assertEquals(1,findPairs_1(nums,k));
+        Assert.assertEquals(1,findPairs_2(nums,k));
     }
 
 
@@ -72,6 +74,7 @@ public class Practice11_KDiffPair {
         return count;
     }
 
+    //HashMap
     private int findPairs_1(int[] nums, int k) {
         int count = 0;
         Map<Integer,Integer> hMap = new HashMap<>();
@@ -81,6 +84,21 @@ public class Practice11_KDiffPair {
         for(Integer eachElement : hMap.keySet())
             if ((k == 0 && hMap.get(eachElement) > 1) ||
                     (k>0 && hMap.containsKey(eachElement+k))) count++;
+
+        return count;
+    }
+
+    //HashSet
+    private int findPairs_2(int[] nums, int k) {
+        int count = 0;
+        Set<Integer> hSet = new HashSet<>();
+
+        for(int eachElement:nums) hSet.add(eachElement);
+
+        if(k==0 && nums.length>hSet.size()) count = nums.length - hSet.size();
+
+        for(Integer eachElement : hSet)
+            if(k>0 && hSet.contains(eachElement+k)) count++;
 
         return count;
     }

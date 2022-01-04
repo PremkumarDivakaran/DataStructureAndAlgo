@@ -6,7 +6,6 @@ import org.junit.Test;
 public class Practice4_HighestSum {
     /*
     Pseudocode -
-
     1) Add first k elements and have a sum
     2) loop from k element until end
            a) subtract the first element from the sum

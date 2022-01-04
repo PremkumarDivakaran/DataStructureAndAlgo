@@ -44,13 +44,12 @@ public class Practice4_maxNumberOfBalloons {
         for (char eachChar : text.toCharArray()) inputList.add(eachChar);
         char[] target = {'b', 'a', 'l', 'l', 'o', 'o', 'n'};
 
-        outer:
         while (inputList.size() >= target.length){
             for (char eachChar : target) {
                 if (inputList.contains(eachChar)) {
                     if (eachChar == 'n') count++;
                     inputList.remove(inputList.indexOf(eachChar));
-                } else break outer;
+                } else return count;
             }
         }
 

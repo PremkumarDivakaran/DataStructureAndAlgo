@@ -5,15 +5,15 @@ import org.junit.Test;
 public class Practice6_SearchInsertPosition {
     /*
     Pseudocode -
-    1. Intialize left=0, right=nums.length-1
+    1. Initialize left=0, right=nums.length-1
     2. Check if target<nums[0], if yes return 0
     3. Check if target>nums[nums.length-1], if yes return nums.length
     4. Traverse through loop till left<=right
             a) intialize mid = (left+right)/2
             b) check if nums[mid]==target, return mid
-            c) check if nums[mid]<target && right-left==1, return mid+1 (edge case)
-            d) check if nums[mid]<target, set left=mid
-            e) else, set right=mid
+            c) check if nums[mid]<target, set left=mid+1
+            d) else, set right=mid-1
+     5. Return left
      */
 
     @Test  //Positive
@@ -45,14 +45,11 @@ public class Practice6_SearchInsertPosition {
 
         while(left<=right){
             int mid = (left+right)/2;
-
             if(nums[mid]==target) return mid;
-            else if(nums[mid]<target && right-left==1) return mid+1;
-            else if(nums[mid]<target) left=mid;
-            else right=mid;
+            else if(nums[mid]<target) left=mid+1;
+            else right=mid-1;
         }
-
-        return nums.length;
+        return left;
     }
 
 }

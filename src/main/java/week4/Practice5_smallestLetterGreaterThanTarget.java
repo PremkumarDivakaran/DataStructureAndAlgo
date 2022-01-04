@@ -8,15 +8,13 @@ public class Practice5_smallestLetterGreaterThanTarget {
     1. Intialize left=0, right=letters.length-1
     2. Check if target-'a'<letters[0] or target-'a'>letters[letters.length-1]
                 -- if yes return letters[0]
-    3. Traverse through loop till left<right
-            a) intialize mid = (left+right)/2
-            b) check if left==mid, if yes increment left & mid (edge case)
+    3. Traverse through loop till left<=right
+            a) initialize mid = (left+right)/2
             b) check if letters[mid]-'a'<=target-'a'
-                    -- if yes, set left=mid & store character in out variable
+                    -- if yes, set left=mid+1
             c) check if letters[mid]-'a'>target-'a'
-                    -- if yes, set right = mid & store character in out variable
-            d) check if letters[mid]-'a'<target-'a', set left=mid
-     4. return out variable
+                    -- if yes, set right = mid-1
+     4. return letters[left]
      */
 
     @Test  //Positive
@@ -42,29 +40,17 @@ public class Practice5_smallestLetterGreaterThanTarget {
     }
 
     private char nextGreatestLetter(char[] letters, char target) {
-        char out = 0;
-        int in = target - 'a';
         int left = 0, right = letters.length - 1;
 
-        if (in >= letters[letters.length - 1] - 'a' || in < letters[0] - 'a') return letters[0];
+        if (target-'a'>=letters[letters.length-1]-'a' || target-'a'<letters[0]-'a')
+            return letters[0];
 
-        while (left < right) {
+        while (left<=right) {
             int mid = (left + right) / 2;
-
-            if (left == mid) {
-                mid++;
-                left++;
-            }
-
-            if (letters[mid] - 'a' <= in) {
-                left = mid;
-                out = letters[mid];
-            } else {
-                right = mid;
-                out = letters[mid];
-            }
+            if(letters[mid]-'a'<=target-'a') left = mid+1;
+            else right = mid-1;
         }
-        return out;
+        return letters[left];
     }
 
 

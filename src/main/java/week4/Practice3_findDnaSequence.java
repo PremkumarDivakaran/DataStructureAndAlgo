@@ -50,6 +50,7 @@ public class Practice3_findDnaSequence {
 
             left++;
             right++;
+
         }
 
         return out;

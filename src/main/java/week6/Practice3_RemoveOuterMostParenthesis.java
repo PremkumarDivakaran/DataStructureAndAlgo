@@ -15,9 +15,7 @@ public class Practice3_RemoveOuterMostParenthesis {
           a. Check character is closing bracket and stack size is even
               -- pop the stack using loop till stack is empty & store it in string builder
           b. else push into stack
-
-
-
+    4. Return string
      */
 
     @Test  //Positive

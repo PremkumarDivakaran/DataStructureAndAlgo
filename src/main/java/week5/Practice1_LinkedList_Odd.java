@@ -16,7 +16,8 @@ public class Practice1_LinkedList_Odd {
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = new Node(9);
 
-        findOddNode(head);
+        Node out = reverseNode(head);
+        printAllNodes(out);
     }
 
     @Test  //Positive
@@ -74,9 +75,10 @@ public class Practice1_LinkedList_Odd {
     private Node reverseNode(Node node){
         Node current = node, previous = null, next = null;
         while(current!=null){
+            next = current.next;
             current.next = previous;
             previous = current;
-            current = current.next;
+            current = next;
         }
         return previous;
     }

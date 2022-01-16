@@ -11,9 +11,11 @@ public class Practice4_RemoveDuplicatesInLinkedList {
     public void example1(){
         Node node = new Node(1);
         node.next = new Node(1);
-        node.next.next = new Node(2);
-        node.next.next.next = new Node(7);
-        node.next.next.next.next = new Node(7);
+        node.next.next = new Node(1);
+        node.next.next.next = new Node(3);
+        node.next.next.next.next = new Node(4);
+        node.next.next.next.next.next = new Node(5);
+        node.next.next.next.next.next.next = new Node(5);
 
         Node out = deleteDuplicates(node);
 
@@ -22,16 +24,33 @@ public class Practice4_RemoveDuplicatesInLinkedList {
     }
 
     private Node deleteDuplicates(Node node) {
-        Node current = node;
+        if(node==null || node.next==null) return node;
 
-        while(current.next!=null){
-            if(current.data==current.next.data){
+        Node out = new Node();
+        Node uniqueNodes = out;
+        boolean isSame = false;
 
+        Node prev = node;
+        Node curr = node.next;
+
+        while(curr!=null){
+            if(prev.data!=curr.data) {
+                if(!isSame) {
+                    uniqueNodes.next = prev;
+                    uniqueNodes = uniqueNodes.next;
+                }
+                isSame = false;
             }else{
-
+                uniqueNodes.next = null;
+                isSame = true;
             }
+            if(curr.next==null && !isSame) uniqueNodes.next = curr;
+
+            prev = prev.next;
+            curr = curr.next;
         }
-        return node;
+
+        return out.next;
     }
 
 
@@ -40,9 +59,7 @@ public class Practice4_RemoveDuplicatesInLinkedList {
         Node next;
         int data;
 
-        Node(){
-            this.next = null;
-        }
+        Node(){}
 
         Node(int data){
             this.data = data;

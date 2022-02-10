@@ -3,7 +3,6 @@ package week1;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Practice8_ShortestCompletingWord {
     /*
@@ -32,23 +31,35 @@ public class Practice8_ShortestCompletingWord {
         findShortestCompletingWord("1s3 PSt", new String[] {"step","steps"});
     }
 
-    private void findShortestCompletingWord(String licensePlate, String[] words){
-        String[] licensePlateArr = licensePlate.replaceAll("[^a-zA-Z]","").split("");
-        int shortLength = 0;
+    private String findShortestCompletingWord(String licensePlate, String[] words){
+        String out = "";
+        String inputStr = sortString(licensePlate.replaceAll("[^A-Za-z]","").toLowerCase());
+        int prevLength = Integer.MAX_VALUE;
 
-        for(int i=0;i< licensePlateArr.length;i++){
-            for(int j=0;j< words.length;j++){
-                List<String> ls = Arrays.asList(words[j].split(""));
+        for(String eachStr: words){
+            if(eachStr.length()<inputStr.length()) continue;
 
-                if(ls.contains(licensePlateArr[i])){
-                    ls.remove(licensePlateArr[i]);
-                    continue;
-                }
-
+            if(sortString(eachStr).contains(inputStr)) {
+                int currentLength = eachStr.length();
+                if(currentLength<prevLength) out = eachStr;
+                prevLength = Math.min(currentLength,prevLength);
             }
         }
+        return out;
+    }
 
+    private String sortString(String input){
+        char[] inputArr = input.toCharArray();
+        Arrays.sort(inputArr);
+        return new String(inputArr);
+    }
 
+    @Test
+    public void testRunner(){
+        //"1s3 456"
+        //["looks","pest","stew","show"]
+        System.out.println(findShortestCompletingWord("1s3 456",
+                new String[]{"looks","pest","stew","show"}));
     }
 
     //Time Complexity -> O[n*m]

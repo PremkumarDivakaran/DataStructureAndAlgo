@@ -8,6 +8,8 @@ public class Practice5_MaxNumRemoval {
 
     @Test
     public void example1(){
+        System.out.println(9%10);
+        System.out.println(9/10);
         System.out.println(findMaxCount("aabcbc","abc"));
     }
 

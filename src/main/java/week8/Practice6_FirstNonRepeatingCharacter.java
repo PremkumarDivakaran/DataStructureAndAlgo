@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class Practice6_FirstNonRepeatingCharacter {
 
+    // Use ascii char array to solve it better
+
     @Test
     public void example1(){
         String s = "leetcode";

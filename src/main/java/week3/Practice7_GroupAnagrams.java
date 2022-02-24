@@ -47,13 +47,14 @@ public class Practice7_GroupAnagrams {
         List<List<String>> out = new ArrayList<>();
 
         for (int left = 0; left < strs.length; left++) {
-            int right = left + 1;
-            List<String> localList = new ArrayList<>();
             if (!strs[left].equals("0")) {
+                int right = left + 1;
+                for (int i = 0; i < strs[left].length(); i++)
+                    sourceMap.put(strs[left].charAt(i), sourceMap.getOrDefault(strs[left].charAt(i), 0) + 1);
+
+                List<String> localList = new ArrayList<>();
                 localList.add(strs[left]);
                 while (right < strs.length) {
-                    for (int i = 0; i < strs[left].length(); i++)
-                        sourceMap.put(strs[left].charAt(i), sourceMap.getOrDefault(strs[left].charAt(i), 0) + 1);
                     for (int i = 0; i < strs[right].length(); i++)
                         targetMap.put(strs[right].charAt(i), targetMap.getOrDefault(strs[right].charAt(i), 0) + 1);
 
@@ -61,12 +62,11 @@ public class Practice7_GroupAnagrams {
                         localList.add(strs[right]);
                         strs[right] = "0";
                     }
-
-                    sourceMap.clear();
                     targetMap.clear();
                     right++;
                 }
                 out.add(localList);
+                sourceMap.clear();
             }
         }
         return out;
@@ -83,12 +83,13 @@ public class Practice7_GroupAnagrams {
         List<List<String>> out = new ArrayList<>();
 
         for (int left = 0; left < input.size(); left++) {
+            for (int i = 0; i < input.get(left).length(); i++)
+                sourceMap.put(input.get(left).charAt(i), sourceMap.getOrDefault(input.get(left).charAt(i), 0) + 1);
+
             int right = left + 1;
             List<String> localList = new ArrayList<>();
             localList.add(input.get(left));
             while (right < input.size()) {
-                for (int i = 0; i < input.get(left).length(); i++)
-                    sourceMap.put(input.get(left).charAt(i), sourceMap.getOrDefault(input.get(left).charAt(i), 0) + 1);
                 for (int i = 0; i < input.get(right).length(); i++)
                     targetMap.put(input.get(right).charAt(i), targetMap.getOrDefault(input.get(right).charAt(i), 0) + 1);
 
@@ -97,10 +98,10 @@ public class Practice7_GroupAnagrams {
                     input.remove(right);
                 }
 
-                sourceMap.clear();
                 targetMap.clear();
                 right++;
             }
+            sourceMap.clear();
             out.add(localList);
         }
         return out;

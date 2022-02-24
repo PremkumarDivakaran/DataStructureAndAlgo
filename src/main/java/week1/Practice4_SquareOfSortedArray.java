@@ -34,12 +34,12 @@ public class Practice4_SquareOfSortedArray {
 
     @Test //Edge
     public void example3(){
-        int[] nums = new int[] {-4,-1,0,3,10};
+        int[] nums = new int[] {-4,-1,0,3,4,10};
         // output : [0,1,9,16,100]
         /*Assert.assertArrayEquals(findSquareOfSortedArray(nums),
                 new int[] {0,1,9,16,100});*/
         Assert.assertArrayEquals(findSquareOfSortedArray_twoPointer(nums),
-                new int[] {0,1,9,16,100});
+                new int[] {0,1,9,16,16,100});
     }
 
     private int[] findSquareOfSortedArray(int[] nums){
@@ -65,6 +65,26 @@ public class Practice4_SquareOfSortedArray {
 
         for(int i=0;i<nums.length;i++) nums[i] *= nums[i];
 
+        return nums;
+    }
+
+    @Test //Edge
+    public void example4() {
+        int[] nums = new int[]{-7, -5, 0, 2, 3, 7, 8};
+        System.out.println(Arrays.toString(findSquareOfSortedArray_twoPointer(nums)));
+    }
+
+    public int[] squareOfSorted_1(int[] nums){
+        int left =0, right = nums.length-1;
+
+        while(left<right){
+            if((nums[left]*nums[left])<=(nums[right]*nums[right])) right--;
+            else {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right--] = temp;
+            }
+        }
         return nums;
     }
 

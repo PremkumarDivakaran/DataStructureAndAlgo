@@ -18,10 +18,10 @@ public class Practice1_MoveZeros {
 
     @Test //Positive
     public void example1(){
-        int[] nums = new int[] {0,1,0,3,12};
+        int[] nums = new int[] {0,1,6,0,2,0,9,5,0};
         //Output: [1,3,12,0,0]
         //Assert.assertArrayEquals(moveZerosToEnd(nums),new int[] {1,3,12,0,0});
-        Assert.assertArrayEquals(moveZerosToEnd_twoPointer1(nums),new int[] {1,3,12,0,0});
+        Assert.assertArrayEquals(moveZerosToEnd_twoPointer1(nums),new int[] {1,6,2,9,5,0,0,0,0});
     }
 
     @Test //Negative
